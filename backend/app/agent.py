@@ -3,8 +3,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import ChatPromptTemplate
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from config import settings
-from web_search import get_web_search_client
+from app.config import settings  # ← Add app.
+from app.web_search import get_web_search_client
 
 
 def basic_input_guardrails(text: str) -> bool:

@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, List, Dict, Tuple
 from contextlib import contextmanager
-from config import settings
+from app.config import settings  # ← Add app.
 
 class Database:
     """SQLite database manager for Math Agent."""
