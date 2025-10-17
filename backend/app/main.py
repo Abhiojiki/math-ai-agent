@@ -7,10 +7,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict
 import uvicorn
-
 from agent import get_agent
 from config import settings
 from database import get_db, init_db
+
+import os
+from pathlib import Path
+import sys
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
+
 
 # Initialize FastAPI app
 app = FastAPI(
