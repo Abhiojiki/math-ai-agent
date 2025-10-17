@@ -2,11 +2,11 @@ fastapi
 uvicorn[standard]
 langchain
 langchain-google-genai
-langchain-community
+# langchain-community
 qdrant-client
 sentence-transformers
 python-dotenv
 pydantic
-datasets
+# datasets
 httpx
 gunicorn
