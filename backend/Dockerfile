@@ -7,22 +7,23 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy requirements first (for caching)
+# Copy requirements
 COPY requirements.txt .
 
-# Install Python dependencies (use CPU-only torch)
+# Install numpy first (critical dependency)
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu \
-    torch==2.1.0+cpu && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir numpy==1.26.4
+
+# Install remaining dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY app/ ./app/
 
-# Create data directory for runtime database
+# Create data directory
 RUN mkdir -p data
 
-# Expose port (DigitalOcean will override with $PORT)
+# Expose port
 EXPOSE 8000
 
 # Run application
@@ -31,4 +32,5 @@ CMD gunicorn app.main:app \
     --workers 2 \
     --worker-class uvicorn.workers.UvicornWorker \
     --timeout 120 \
-    --log-level info
+    --log-level info \
+    --preload
