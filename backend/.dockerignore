@@ -12,3 +12,7 @@ venv/
 .gitignore
 *.md
 tests/
+data/
+*.db
+*.sqlite
+*.json
