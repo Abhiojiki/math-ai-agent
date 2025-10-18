@@ -5,7 +5,8 @@ from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
 from app.config import settings  # ← Add app.
 from app.web_search import get_web_search_client
-
+# from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from app.config import settings
 
 def basic_input_guardrails(text: str) -> bool:
     t = text.lower()
@@ -56,6 +57,8 @@ class QdrantRetriever:
             }
             for r in filtered
         ]
+
+
 
 class MathAgent:
     def __init__(self):
